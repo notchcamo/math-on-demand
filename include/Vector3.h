@@ -8,6 +8,9 @@
 
 #include "Util.h"
 
+/**
+ * @brief Namespace for math-on-demand.
+ */
 namespace mod {
     /**
      * @brief 3D vector class.
@@ -66,9 +69,9 @@ namespace mod {
             return *this;
         }
         bool operator==(const Vector3& rhs) const {
-            return mod::is_zero(x - rhs.x) &&
-                mod::is_zero(y - rhs.y) &&
-                mod::is_zero(z, rhs.z);
+            return util::is_zero(x - rhs.x) &&
+                util::is_zero(y - rhs.y) &&
+                util::is_zero(z, rhs.z);
         }
 
         // Getters & Setters
@@ -109,7 +112,7 @@ namespace mod {
          */
         void normalize() {
             const T magnitude = get_magnitude();
-            if (is_zero(magnitude)) {
+            if (util::is_zero(magnitude)) {
                 return;
             }
 
