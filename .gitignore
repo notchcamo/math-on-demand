@@ -2,3 +2,6 @@
 
 # IDE related directory.
 .idea
+
+# doxygen build artifacts.
+docs
