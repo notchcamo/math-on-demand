@@ -37,6 +37,6 @@ TEST(Vector3Test, CrossProduct) {
     mod::Vector3f a(1.0f, 2.0f, 3.0f);
     mod::Vector3f b(4.0f, 5.0f, 6.0f);
     mod::Vector3f cross5 = a.cross(b);
-    EXPECT_EQ(mod::is_zero(cross5.dot(a)), true);
-    EXPECT_EQ(mod::is_zero(cross5.dot(b)), true);
+    EXPECT_EQ(mod::util::is_zero(cross5.dot(a)), true);
+    EXPECT_EQ(mod::util::is_zero(cross5.dot(b)), true);
 }
