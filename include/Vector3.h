@@ -9,9 +9,9 @@
 #include "Util.h"
 
 /**
- * @brief Namespace for math-on-demand.
+ * @brief Namespace for <b>math</b>-<b>o</b>n-<b>d</b>emand.
  */
-namespace mod {
+namespace mathod {
     /**
      * @brief 3D vector class.
      * @tparam T Type of the components.
@@ -148,6 +148,6 @@ namespace mod {
 
     using Vector3f = Vector3<float>;
     using Vector3d = Vector3<double>;
-} // namespace mod.
+} // namespace mathod.
 
 #endif //VECTOR3_H

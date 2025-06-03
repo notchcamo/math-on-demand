@@ -5,7 +5,7 @@
 
 #include <limits>
 
-namespace mod {
+namespace mathod {
     /**
      * @brief Namespace for utility functions.
      */
@@ -18,6 +18,6 @@ namespace mod {
             return std::abs(value) < tolerance;
         }
     } // namespace util.
-} // namespace mod.
+} // namespace mathod.
 
 #endif //UTIL_H
