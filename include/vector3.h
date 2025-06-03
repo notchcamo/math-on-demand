@@ -14,9 +14,9 @@
 namespace mathod {
     /**
      * @brief 3D vector class.
-     * @tparam T Type of the components.
+     * @tparam T Type of the components. Must be a floating-point type.
      */
-    template <typename T>
+    template <std::floating_point T>
     class Vector3 {
     private:
         T x, y, z;
