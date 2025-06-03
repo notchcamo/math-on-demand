@@ -68,9 +68,9 @@ namespace mathod {
             return *this;
         }
         bool operator==(const Vector3& rhs) const {
-            return util::is_zero(x - rhs.x) &&
-                util::is_zero(y - rhs.y) &&
-                util::is_zero(z, rhs.z);
+            return util::is_equal(x, rhs.x) &&
+                util::is_equal(y, rhs.y) &&
+                util::is_equal(z, rhs.z);
         }
 
         // Getters & Setters
@@ -111,7 +111,7 @@ namespace mathod {
          */
         void normalize() {
             const T magnitude = get_magnitude();
-            if (util::is_zero(magnitude)) {
+            if (util::is_equal(magnitude, 0.0f)) {
                 return;
             }
 
