@@ -16,9 +16,13 @@ jobs:
     name: Build doxygen document.
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the repository.
+        id: checkout
+        uses: actions/checkout@v4
+
       - name: Doxygen action.
         id: build
-        uses: mattnotmitt/doxygen-action@v1
+        uses: mattnotmitt/doxygen-action@edge
         with:
           working-directory: "."
           doxyfile-path: "./Doxyfile"
