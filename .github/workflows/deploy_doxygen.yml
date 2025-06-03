@@ -31,11 +31,13 @@ jobs:
 #          working-directory: "."
 #          doxyfile-path: "./Doxyfile"
 
-      - name: Install & Run doxygen.
-        id: install_and_run_doxygen
-        run:
-          brew install doxygen
-          doxygen ./Doxyfile
+      - name: Install doxygen.
+        id: install_doxygen
+        run: brew install doxygen
+
+      - name: Run doxygen.
+        id: run_doxygen
+        run: doxygen ./Doxyfile
 
       - name: Upload artifact.
         id: deployment
