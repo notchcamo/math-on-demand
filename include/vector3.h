@@ -1,7 +1,6 @@
 // By notchcamo.
 
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#pragma once
 
 #include <format>
 #include <string>
@@ -149,5 +148,3 @@ namespace mathod {
     using Vector3f = Vector3<float>;
     using Vector3d = Vector3<double>;
 } // namespace mathod.
-
-#endif //VECTOR3_H

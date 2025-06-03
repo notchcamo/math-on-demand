@@ -1,7 +1,6 @@
 // By notchcamo.
 
-#ifndef UTIL_H
-#define UTIL_H
+#pragma once
 
 #include <limits>
 
@@ -18,5 +17,3 @@ namespace mathod::util {
         return std::abs(value) < tolerance;
     }
 } // namespace mathod.
-
-#endif //UTIL_H
