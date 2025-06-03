@@ -6,6 +6,10 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  pages: write
+
 concurrency:
   group: "document"
   cancel-in-progress: false
