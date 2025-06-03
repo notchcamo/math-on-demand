@@ -18,18 +18,24 @@ jobs:
   # Build and deploy doxygen document.
   build:
     name: Build doxygen document.
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout the repository.
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Doxygen action.
-        id: build
-        uses: mattnotmitt/doxygen-action@edge
-        with:
-          working-directory: "."
-          doxyfile-path: "./Doxyfile"
+#      - name: Doxygen action.
+#        id: build
+#        uses: mattnotmitt/doxygen-action@edge
+#        with:
+#          working-directory: "."
+#          doxyfile-path: "./Doxyfile"
+
+      - name: Install & Run doxygen.
+        id: install_and_run_doxygen
+        run:
+          brew install doxygen
+          doxygen ./Doxyfile
 
       - name: Upload artifact.
         id: deployment
