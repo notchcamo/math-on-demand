@@ -1,8 +1,8 @@
 // By notchcamo.
 
 #include "gtest/gtest.h"
-#include "Vector3.h"
-#include "Util.h"
+#include "vector3.h"
+#include "util.h"
 
 TEST(Vector3Test, CrossProduct) {
     // The cross product of the x-axis vector and the y-axis vector is the z-axis vector.

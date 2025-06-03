@@ -6,7 +6,7 @@
 #include <format>
 #include <string>
 
-#include "Util.h"
+#include "util.h"
 
 /**
  * @brief Namespace for <b>math</b>-<b>o</b>n-<b>d</b>emand.
