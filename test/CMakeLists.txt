@@ -5,7 +5,7 @@ add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 # adding the Google_Tests_run target
-add_executable(Google_Tests_run Vector3Test.cpp)
+add_executable(Google_Tests_run vector3_test.cpp)
 
 # linking Google_Tests_run with the library which will be tested
 target_link_libraries(Google_Tests_run math_on_demand)
