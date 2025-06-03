@@ -18,8 +18,9 @@ jobs:
     steps:
       - name: Doxygen action.
         id: build
-        uses: mattnotmitt/doxygen-action@edge
+        uses: mattnotmitt/doxygen-action@v1
         with:
+          working-directory: "."
           doxyfile-path: "./Doxyfile"
 
       - name: Upload artifact.
