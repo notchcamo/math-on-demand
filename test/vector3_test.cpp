@@ -46,3 +46,19 @@ TEST(Vector3Test, CrossProduct) {
     EXPECT_EQ(mathod::util::isEqual(cross5.dot(a),0.0f), true);
     EXPECT_EQ(mathod::util::isEqual(cross5.dot(b),0.0f), true);
 }
+
+TEST(Vector3Test, DivisionByZero) {
+    EXPECT_THROW({
+        mathod::Vector3f v1(1.0f, 1.0f, 1.0f);
+        v1 /= 0.0f;
+    },
+        mathod::exception::DivisionByZeroException
+    ) << "operator/= test failed.";
+
+    EXPECT_THROW({
+        mathod::Vector3f v1(1.0f, 1.0f, 1.0f);
+        mathod::Vector3f v2 = v1 / 0.0f;
+    },
+        mathod::exception::DivisionByZeroException
+    ) << "operator/ test failed.";
+}
