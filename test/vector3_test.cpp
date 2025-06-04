@@ -4,6 +4,12 @@
 #include "vector3.h"
 #include "util.h"
 
+TEST(Vector3Test, Normalize) {
+    mathod::Vector3f v1(-1.344f, 999.0f, 9.11f);
+    v1.normalize();
+    EXPECT_EQ(mathod::util::isEqual(v1.getMagnitude(), 1.0f), true);
+}
+
 TEST(Vector3Test, CrossProduct) {
     // The cross product of the x-axis vector and the y-axis vector is the z-axis vector.
     mathod::Vector3f v1(1.0f, 0.0f, 0.0f);
