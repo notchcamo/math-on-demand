@@ -112,12 +112,12 @@ namespace mathod {
          * Changes the vector's magnitude to 1.
          */
         void normalize() {
-            const T magnitude = getMagnitude();
-            if (util::isEqual(magnitude, 0.0f)) {
+            const T magnitude{getMagnitude()};
+            if (util::isEqual(magnitude, static_cast<T>(0.0))) {
                 return;
             }
 
-            const T inv_magnitude = 1.0f / magnitude;
+            const T inv_magnitude{static_cast<T>(1.0) / magnitude};
             x *= inv_magnitude;
             y *= inv_magnitude;
             z *= inv_magnitude;
