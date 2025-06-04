@@ -24,21 +24,22 @@ namespace mathod {
     public:
         // Constructors.
 
-        Vector3() = default;
-        Vector3(const T x, const T y, const T z) : x(x), y(y), z(z) {}
-        Vector3(const Vector3& other) : x(other.x), y(other.y), z(other.z) {}
+        Vector3() noexcept = default;
+        Vector3(const T x, const T y, const T z) noexcept : x(x), y(y), z(z) {}
+        Vector3(const Vector3& other) noexcept : x(other.x), y(other.y), z(other.z) {}
+        Vector3(Vector3&& other) noexcept : x(std::move(other.x)), y(std::move(other.y)), z(std::move(other.z)) {}
 
-        ~Vector3() = default;
+        ~Vector3() noexcept = default;
 
         // Operator Overloadings.
 
-        Vector3 operator+(const Vector3& rhs) const {
+        Vector3 operator+(const Vector3& rhs) const noexcept {
             return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
         }
-        Vector3 operator-(const Vector3& rhs) const {
+        Vector3 operator-(const Vector3& rhs) const noexcept {
             return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
         }
-        Vector3 operator*(const T scalar) const {
+        Vector3 operator*(const T scalar) const noexcept {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
         Vector3 operator/(const T scalar) const {
@@ -49,19 +50,19 @@ namespace mathod {
             const T inv_scalar{static_cast<T>(1.0) / scalar};
             return Vector3(x * inv_scalar, y * inv_scalar, z * inv_scalar);
         }
-        Vector3& operator+=(const Vector3& rhs) {
+        Vector3& operator+=(const Vector3& rhs) noexcept {
             x += rhs.x;
             y += rhs.y;
             z += rhs.z;
             return *this;
         }
-        Vector3 operator-=(const Vector3& rhs) {
+        Vector3 operator-=(const Vector3& rhs) noexcept {
             x -= rhs.x;
             y -= rhs.y;
             z -= rhs.z;
             return *this;
         }
-        Vector3& operator*=(const T scalar) {
+        Vector3& operator*=(const T scalar) noexcept {
             x *= scalar;
             y *= scalar;
             z *= scalar;
@@ -86,13 +87,13 @@ namespace mathod {
 
         // Getters & Setters
 
-        T getX() const { return x; }
-        T getY() const { return y; }
-        T getZ() const { return z; }
+        T getX() const noexcept { return x; }
+        T getY() const noexcept { return y; }
+        T getZ() const noexcept { return z; }
 
-        void setX(const T value) { x = value; }
-        void setY(const T value) { y = value; }
-        void setZ(const T value) { z = value; }
+        void setX(const T value) noexcept { x = value; }
+        void setY(const T value) noexcept { y = value; }
+        void setZ(const T value) noexcept { z = value; }
 
         // Other methods.
 
@@ -115,7 +116,7 @@ namespace mathod {
         /**
          * @return Squared magnitude(length) of the vector.
          */
-        T getMagnitudeSquared() const {
+        T getMagnitudeSquared() const noexcept {
             return x * x + y * y + z * z;
         }
 
@@ -144,14 +145,14 @@ namespace mathod {
         /**
          * @return Dot product of two vectors.
          */
-        T dot(const Vector3& rhs) const {
+        T dot(const Vector3& rhs) const noexcept {
             return x * rhs.x + y * rhs.y + z * rhs.z;
         }
 
         /**
          * @return Cross product of two vectors.
          */
-        Vector3 cross(const Vector3& rhs) const {
+        Vector3 cross(const Vector3& rhs) const noexcept {
             return Vector3(y * rhs.z - z *rhs.y,
                 z * rhs.x - x * rhs.z,
                 x * rhs.y - y * rhs.x);
