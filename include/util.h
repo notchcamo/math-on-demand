@@ -14,7 +14,7 @@ namespace mathod::util {
      */
     template <typename T>
     requires std::is_arithmetic_v<T>
-    bool is_equal(const T a, const T b, const T tolerance = std::numeric_limits<T>::epsilon()) {
+    bool isEqual(const T a, const T b, const T tolerance = std::numeric_limits<T>::epsilon()) {
         return std::abs(a - b) < tolerance;
     }
 } // namespace mathod.

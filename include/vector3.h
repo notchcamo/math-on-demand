@@ -68,41 +68,41 @@ namespace mathod {
             return *this;
         }
         bool operator==(const Vector3& rhs) const {
-            return util::is_equal(x, rhs.x) &&
-                util::is_equal(y, rhs.y) &&
-                util::is_equal(z, rhs.z);
+            return util::isEqual(x, rhs.x) &&
+                util::isEqual(y, rhs.y) &&
+                util::isEqual(z, rhs.z);
         }
 
         // Getters & Setters
 
-        T get_x() const { return x; }
-        T get_y() const { return y; }
-        T get_z() const { return z; }
+        T getX() const { return x; }
+        T getY() const { return y; }
+        T getZ() const { return z; }
 
-        void set_x(const T value) { x = value; }
-        void set_y(const T value) { y = value; }
-        void set_z(const T value) { z = value; }
+        void setX(const T value) { x = value; }
+        void setY(const T value) { y = value; }
+        void setZ(const T value) { z = value; }
 
         // Other methods.
 
         /**
          * @brief Returns the string formatted as "[x, y, z]".
          */
-        std::string to_string() const {
+        std::string toString() const {
             return std::format("[{:f}, {:f}, {:f}]", x, y, z);
         }
 
         /**
          * @brief Returns magnitude(length) of the vector.
          */
-        T get_magnitude() const {
+        T getMagnitude() const {
             return std::sqrt(x * x + y * y + z * z);
         }
 
         /**
          * @brief Returns squared magnitude(length) of the vector.
          */
-        T get_magnitude_squared() const {
+        T getMagnitudeSquared() const {
             return x * x + y * y + z * z;
         }
 
@@ -110,8 +110,8 @@ namespace mathod {
          * @brief Changes the vector's magnitude to 1.
          */
         void normalize() {
-            const T magnitude = get_magnitude();
-            if (util::is_equal(magnitude, 0.0f)) {
+            const T magnitude = getMagnitude();
+            if (util::isEqual(magnitude, 0.0f)) {
                 return;
             }
 
@@ -124,7 +124,7 @@ namespace mathod {
         /**
          * @brief Returns normalized vector.
          */
-        Vector3 get_normalized() const {
+        Vector3 getNormalized() const {
             return Vector3(x, y, z).normalize();
         }
 
