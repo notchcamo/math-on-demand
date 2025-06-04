@@ -5,6 +5,7 @@
 #include <format>
 #include <string>
 
+#include "exception.h"
 #include "util.h"
 
 /**
@@ -41,6 +42,10 @@ namespace mathod {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
         Vector3 operator/(const T scalar) const {
+            if (util::isZero(scalar)) {
+                throw exception::DivisionByZeroException();
+            }
+
             const T inv_scalar{static_cast<T>(1.0) / scalar};
             return Vector3(x * inv_scalar, y * inv_scalar, z * inv_scalar);
         }
@@ -63,6 +68,10 @@ namespace mathod {
             return *this;
         }
         Vector3& operator/=(const T scalar) {
+            if (util::isZero(scalar)) {
+                throw exception::DivisionByZeroException();
+            }
+
             const T inv_scalar{static_cast<T>(1.0) / scalar};
             x *= inv_scalar;
             y *= inv_scalar;
