@@ -41,7 +41,8 @@ namespace mathod {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
         Vector3 operator/(const T scalar) const {
-            return Vector3(x / scalar, y / scalar, z / scalar);
+            const T inv_scalar{static_cast<T>(1.0) / scalar};
+            return Vector3(x * inv_scalar, y * inv_scalar, z * inv_scalar);
         }
         Vector3& operator+=(const Vector3& rhs) {
             x += rhs.x;
@@ -62,9 +63,10 @@ namespace mathod {
             return *this;
         }
         Vector3& operator/=(const T scalar) {
-            x /= scalar;
-            y /= scalar;
-            z /= scalar;
+            const T inv_scalar{static_cast<T>(1.0) / scalar};
+            x *= inv_scalar;
+            y *= inv_scalar;
+            z *= inv_scalar;
             return *this;
         }
         bool operator==(const Vector3& rhs) const {
@@ -113,7 +115,7 @@ namespace mathod {
          */
         void normalize() {
             const T magnitude{getMagnitude()};
-            if (util::isEqual(magnitude, static_cast<T>(0.0))) {
+            if (util::isZero(magnitude)) {
                 return;
             }
 
