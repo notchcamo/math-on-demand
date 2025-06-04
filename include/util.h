@@ -27,4 +27,4 @@ namespace mathod::util {
     bool isZero(const T num, const T tolerance = std::numeric_limits<T>::epsilon()) {
         return isEqual(num, static_cast<T>(0), tolerance);
     }
-} // namespace mathod.
+} // namespace mathod::util.
