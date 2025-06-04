@@ -86,28 +86,30 @@ namespace mathod {
         // Other methods.
 
         /**
-         * @brief Returns the string formatted as "[x, y, z]".
+         * @return String formatted as "[x, y, z]".
          */
         std::string toString() const {
             return std::format("[{:f}, {:f}, {:f}]", x, y, z);
         }
 
         /**
-         * @brief Returns magnitude(length) of the vector.
+         * Use the @ref getMagnitudeSquared "squared version" if you only need relative comparison
+         * to avoid the expensive square root operation.
+         * @return Magnitude(length) of the vector.
          */
         T getMagnitude() const {
             return std::sqrt(x * x + y * y + z * z);
         }
 
         /**
-         * @brief Returns squared magnitude(length) of the vector.
+         * @return Squared magnitude(length) of the vector.
          */
         T getMagnitudeSquared() const {
             return x * x + y * y + z * z;
         }
 
         /**
-         * @brief Changes the vector's magnitude to 1.
+         * Changes the vector's magnitude to 1.
          */
         void normalize() {
             const T magnitude = getMagnitude();
@@ -122,21 +124,21 @@ namespace mathod {
         }
 
         /**
-         * @brief Returns normalized vector.
+         * @return Normalized vector.
          */
         Vector3 getNormalized() const {
             return Vector3(x, y, z).normalize();
         }
 
         /**
-         * @brief Returns the dot product of two vectors.
+         * @return Dot product of two vectors.
          */
         T dot(const Vector3& rhs) const {
             return x * rhs.x + y * rhs.y + z * rhs.z;
         }
 
         /**
-         * @brief Returns the cross product of two vectors.
+         * @return Cross product of two vectors.
          */
         Vector3 cross(const Vector3& rhs) const {
             return Vector3(y * rhs.z - z *rhs.y,
