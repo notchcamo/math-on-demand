@@ -7,7 +7,7 @@
 #include <utility>
 
 /**
- * Namespace for custom exceptions.
+ * @brief Namespace for custom exceptions.
  */
 namespace mathod::exception {
     class DivisionByZeroException final : public std::exception {
