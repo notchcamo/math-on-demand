@@ -24,8 +24,7 @@ namespace mathod {
     public:
         // Constructors.
 
-        Vector3() noexcept = default;
-        Vector3(const T x, const T y, const T z) noexcept : x(x), y(y), z(z) {}
+        explicit Vector3(const T x = T{}, const T y = T{}, const T z = T{}) noexcept : x(x), y(y), z(z) {}
         Vector3(const Vector3& other) noexcept : x(other.x), y(other.y), z(other.z) {}
         Vector3(Vector3&& other) noexcept : x(std::move(other.x)), y(std::move(other.y)), z(std::move(other.z)) {}
 
@@ -157,9 +156,29 @@ namespace mathod {
                 z * rhs.x - x * rhs.z,
                 x * rhs.y - y * rhs.x);
         }
+
+        // Static members.
+
+        /**
+         * Zero vector.
+         */
+        inline static const Vector3 ZERO{0, 0, 0};
     };
 
+    // Type aliases.
+
+    /**
+     * Type alias for Vector3 with single precision.
+     */
     using Vector3f = Vector3<float>;
+
+    /**
+     * Type alias for Vector3 with double precision.
+     */
     using Vector3d = Vector3<double>;
+
+    /**
+     * Type alias for Vector3 with long double precision.
+     */
     using Vector3L = Vector3<long double>;
 } // namespace mathod.
