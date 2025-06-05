@@ -1,8 +1,7 @@
 // By notchcamo.
 
 #include "gtest/gtest.h"
-#include "vector3.h"
-#include "util.h"
+#include "mathod.h"
 
 TEST(Vector3Test, Normalize) {
     mathod::Vector3f v1(-1.344f, 999.0f, 9.11f);
