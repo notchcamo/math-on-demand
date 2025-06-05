@@ -3,61 +3,110 @@
 #include "gtest/gtest.h"
 #include "mathod/mathod.h"
 
-TEST(Vector3Test, Normalize) {
-    mathod::Vector3f v1(-1.344f, 999.0f, 9.11f);
-    v1.normalize();
-    EXPECT_EQ(mathod::util::isEqual(v1.getMagnitude(), 1.0f), true);
+using namespace mathod;
+
+TEST(Vector3, normalize_non_zero) {
+    const auto testFunc = []<std::floating_point T>(){
+        Vector3<T> v(3.0, 4.0, 0.0);
+        v.normalize();
+
+        const auto tolerance = std::numeric_limits<T>::epsilon();
+
+        EXPECT_NEAR(v.getMagnitude(), T(1), tolerance);
+        EXPECT_NEAR(v.getX(), T(0.6), tolerance);
+        EXPECT_NEAR(v.getY(), T(0.8), tolerance);
+        EXPECT_NEAR(v.getZ(), T(0), tolerance);
+    };
+
+    testFunc.operator()<float>();
+    testFunc.operator()<double>();
+    testFunc.operator()<long double>();
 }
 
-TEST(Vector3Test, CrossProduct) {
-    // The cross product of the x-axis vector and the y-axis vector is the z-axis vector.
-    mathod::Vector3f v1(1.0f, 0.0f, 0.0f);
-    mathod::Vector3f v2(0.0f, 1.0f, 0.0f);
-    mathod::Vector3f cross = v1.cross(v2);
-    EXPECT_FLOAT_EQ(cross.getX(), 0.0f);
-    EXPECT_FLOAT_EQ(cross.getY(), 0.0f);
-    EXPECT_FLOAT_EQ(cross.getZ(), 1.0f);
+TEST(Vector3, cross_product) {
+    const auto testFunc = []<std::floating_point T>() {
+        Vector3<T> v1(1, 0, 0);
+        Vector3<T> v2(0, 1, 0);
+        Vector3<T> v3(0, 0, 1);
+        Vector3<T> v4(1, 2, 3);
+        Vector3<T> v5(4, 5, 6);
 
-    // The cross product of the y-axis vector and the x-axis vector is the - z-axis vector.
-    mathod::Vector3f cross2 = v2.cross(v1);
-    EXPECT_FLOAT_EQ(cross2.getX(), 0.0f);
-    EXPECT_FLOAT_EQ(cross2.getY(), 0.0f);
-    EXPECT_FLOAT_EQ(cross2.getZ(), -1.0f);
+        const auto tolerance = std::numeric_limits<T>::epsilon();
 
-    // The cross product of any vector and the zero vector is the zero vector.
-    mathod::Vector3f zero(0.0f, 0.0f, 0.0f);
-    mathod::Vector3f cross3 = v1.cross(zero);
-    EXPECT_FLOAT_EQ(cross3.getX(), 0.0f);
-    EXPECT_FLOAT_EQ(cross3.getY(), 0.0f);
-    EXPECT_FLOAT_EQ(cross3.getZ(), 0.0f);
+        // x X y = z
+        Vector3<T> result = v1.cross(v2);
+        EXPECT_NEAR(result.getX(), T(0), tolerance);
+        EXPECT_NEAR(result.getY(), T(0), tolerance);
+        EXPECT_NEAR(result.getZ(), T(1), tolerance);
 
-    // The cross product of two parallel vectors is the zero vector.
-    mathod::Vector3f v3(2.0f, 0.0f, 0.0f); // v1과 방향이 같음
-    mathod::Vector3f cross4 = v1.cross(v3);
-    EXPECT_FLOAT_EQ(cross4.getX(), 0.0f);
-    EXPECT_FLOAT_EQ(cross4.getY(), 0.0f);
-    EXPECT_FLOAT_EQ(cross4.getZ(), 0.0f);
+        // y X z = x
+        result = v2.cross(v3);
+        EXPECT_NEAR(result.getX(), T(1), tolerance);
+        EXPECT_NEAR(result.getY(), T(0), tolerance);
+        EXPECT_NEAR(result.getZ(), T(0), tolerance);
 
-    // The cross product of two vectors is orthogonal to both of them.
-    mathod::Vector3f a(1.0f, 2.0f, 3.0f);
-    mathod::Vector3f b(4.0f, 5.0f, 6.0f);
-    mathod::Vector3f cross5 = a.cross(b);
-    EXPECT_EQ(mathod::util::isEqual(cross5.dot(a),0.0f), true);
-    EXPECT_EQ(mathod::util::isEqual(cross5.dot(b),0.0f), true);
+        // z X x = y
+        result = v3.cross(v1);
+        EXPECT_NEAR(result.getX(), T(0), tolerance);
+        EXPECT_NEAR(result.getY(), T(1), tolerance);
+        EXPECT_NEAR(result.getZ(), T(0), tolerance);
+
+        // Normal case.
+        result = v4.cross(v5);
+        EXPECT_NEAR(result.getX(), T(2*6 - 3*5), tolerance);
+        EXPECT_NEAR(result.getY(), T(3*4 - 1*6), tolerance);
+        EXPECT_NEAR(result.getZ(), T(1*5 - 2*4), tolerance);
+
+        // Cross product with itself is a zero vector.
+        result = v1.cross(v1);
+        EXPECT_EQ(result, Vector3<T>::ZERO);
+    };
+
+    testFunc.operator()<float>();
+    testFunc.operator()<double>();
+    testFunc.operator()<long double>();
 }
 
-TEST(Vector3Test, DivisionByZero) {
-    EXPECT_THROW({
-        mathod::Vector3f v1(1.0f, 1.0f, 1.0f);
-        v1 /= 0.0f;
-    },
-        mathod::exception::DivisionByZeroException
+TEST(Vector3, dot_product) {
+    const auto testFunc = []<std::floating_point T>() {
+        Vector3<T> v1(1.0, 2.0, 3.0);
+        Vector3<T> v2(4.0, 5.0, 6.0);
+        Vector3<T> v3(0.0, 0.0, 0.0);
+        Vector3<T> v4(-1.0, -2.0, -3.0);
+        const auto tolerance = std::numeric_limits<T>::epsilon();
+
+        // Normal case.
+        EXPECT_NEAR(v1.dot(v2), T(1*4 + 2*5 + 3*6), tolerance);
+
+        // Dot product with itself.
+        EXPECT_NEAR(v1.dot(v1), T(1*1 + 2*2 + 3*3), tolerance);
+
+        // Dot product with zero.
+        EXPECT_NEAR(v1.dot(Vector3<T>::ZERO), T(0), tolerance);
+
+        // Dot product with minus vector.
+        EXPECT_NEAR(v1.dot(v4), T(1*-1 + 2*-2 + 3*-3), tolerance);
+    };
+
+    testFunc.operator()<float>();
+    testFunc.operator()<double>();
+    testFunc.operator()<long double>();
+}
+
+TEST(Vector3, division_by_zero) {
+    EXPECT_THROW(
+        {
+            Vector3f v1(1.0f, 1.0f, 1.0f);
+            v1 /= 0.0f;
+        },
+        exception::DivisionByZeroException
     ) << "operator/= test failed.";
 
-    EXPECT_THROW({
-        mathod::Vector3f v1(1.0f, 1.0f, 1.0f);
-        mathod::Vector3f v2 = v1 / 0.0f;
-    },
-        mathod::exception::DivisionByZeroException
+    EXPECT_THROW(
+        {
+            Vector3f v1(1.0f, 1.0f, 1.0f);
+            Vector3f v2 = v1 / 0.0f;
+        },
+        exception::DivisionByZeroException
     ) << "operator/ test failed.";
 }
