@@ -32,6 +32,15 @@ namespace mathod {
 
         // Operator Overloadings.
 
+        Vector3& operator=(const Vector3& rhs) noexcept {
+            if (*this != rhs) {
+                x = rhs.x;
+                y = rhs.y;
+                z = rhs.z;
+            }
+
+            return *this;
+        }
         Vector3 operator+(const Vector3& rhs) const noexcept {
             return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
         }
