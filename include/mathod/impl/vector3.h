@@ -52,7 +52,7 @@ namespace mathod {
         }
         Vector3 operator/(const T scalar) const {
             if (util::isZero(scalar)) {
-                throw exception::DivisionByZeroException();
+                throw exception::DivisionByZero();
             }
 
             const T inv_scalar{static_cast<T>(1.0) / scalar};
@@ -78,7 +78,7 @@ namespace mathod {
         }
         Vector3& operator/=(const T scalar) {
             if (util::isZero(scalar)) {
-                throw exception::DivisionByZeroException();
+                throw exception::DivisionByZero();
             }
 
             const T inv_scalar{static_cast<T>(1.0) / scalar};

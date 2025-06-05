@@ -99,7 +99,7 @@ TEST(Vector3, division_by_zero) {
             Vector3f v1(1.0f, 1.0f, 1.0f);
             v1 /= 0.0f;
         },
-        exception::DivisionByZeroException
+        exception::DivisionByZero
     ) << "operator/= test failed.";
 
     EXPECT_THROW(
@@ -107,6 +107,6 @@ TEST(Vector3, division_by_zero) {
             Vector3f v1(1.0f, 1.0f, 1.0f);
             Vector3f v2 = v1 / 0.0f;
         },
-        exception::DivisionByZeroException
+        exception::DivisionByZero
     ) << "operator/ test failed.";
 }
