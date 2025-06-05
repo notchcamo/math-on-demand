@@ -161,4 +161,5 @@ namespace mathod {
 
     using Vector3f = Vector3<float>;
     using Vector3d = Vector3<double>;
+    using Vector3L = Vector3<long double>;
 } // namespace mathod.
