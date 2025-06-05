@@ -5,7 +5,7 @@
 
 using namespace mathod;
 
-TEST(LERP, float_test) {
+TEST(LERP, float) {
     constexpr auto tolerance = std::numeric_limits<float>::epsilon();
     constexpr float a = 0.0f;
     constexpr float b = 10.0f;
@@ -16,7 +16,7 @@ TEST(LERP, float_test) {
     EXPECT_NEAR(util::lerp(a, b, 0.3f), 3.0f, tolerance);
 }
 
-TEST(LERP, double_test) {
+TEST(LERP, double) {
     constexpr auto tolerance = std::numeric_limits<double>::epsilon();
     constexpr double a = 0.0f;
     constexpr double b = 10.0f;
@@ -27,7 +27,7 @@ TEST(LERP, double_test) {
     EXPECT_NEAR(util::lerp(a, b, 0.3), 3.0, tolerance);
 }
 
-TEST(LERP, long_double_test) {
+TEST(LERP, long_double) {
     constexpr auto tolerance = std::numeric_limits<long double>::epsilon();
     constexpr long double a = 0.0L;
     constexpr long double b = 10.0L;
