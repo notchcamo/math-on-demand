@@ -24,7 +24,9 @@ namespace mathod {
     public:
         // Constructors.
 
-        explicit Vector3(const T x = T{}, const T y = T{}, const T z = T{}) noexcept : x(x), y(y), z(z) {}
+        Vector3() = default;
+        explicit Vector3(const T value) noexcept : x(value), y(value), z(value) {}
+        Vector3(const T x, const T y, const T z) noexcept : x(x), y(y), z(z) {}
         Vector3(const Vector3& other) noexcept : x(other.x), y(other.y), z(other.z) {}
         Vector3(Vector3&& other) noexcept : x(std::move(other.x)), y(std::move(other.y)), z(std::move(other.z)) {}
 
