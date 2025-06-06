@@ -30,20 +30,20 @@ namespace mathod::util {
 
     /**
      * Linear interpolation between two values.
+     * @tparam T Floating-point type.
      * @param a First value.
      * @param b Second value.
      * @param alpha Interpolation factor (0.0 ~ 1.0).
-     * @tparam T Floating-point type.
      * @return Weighted average of a and b.
      */
-    template <std::floating_point T>
-    T lerp(const T a, const T b, const T alpha) {
-        if (alpha < T(0) || alpha > T(1)) {
+    template <typename T, std::floating_point FP>
+    T lerp(const T a, const T b, const FP alpha) {
+        if (alpha < FP(0) || alpha > FP(1)) {
             throw std::invalid_argument(
                 "The alpha must be ranged from 0 to 1, but given value is " + std::to_string(alpha)
             );
         }
 
-        return (T(1) - alpha) * a + alpha * b;
+        return a * (FP(1) - alpha) + b * alpha;
     }
 } // namespace mathod::util.
