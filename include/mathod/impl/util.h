@@ -21,6 +21,23 @@ namespace mathod::util
     }
 
     /**
+     * Compares elements of two containers.
+     * @tparam Range Elements' type must be arithmetic.
+     * @return True if given containers' entries are identical.
+     */
+    template <std::ranges::range Range>
+    requires std::is_arithmetic_v<std::ranges::range_value_t<Range>>
+    bool isEqual(const Range& a, const Range& b, const std::ranges::range_value_t<Range> tolerance = std::numeric_limits<std::ranges::range_value_t<Range>>::epsilon())
+    {
+        const auto pred = [&tolerance](const auto& aVal, const auto& bVal)
+        {
+            return isEqual(aVal, bVal, tolerance);
+        };
+
+        return std::ranges::equal(a, b, pred);
+    }
+
+    /**
      * @tparam T Arithmetic types only.
      * @return True if the given value is nearly zero.
      */
