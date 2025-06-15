@@ -84,3 +84,26 @@ TEST(Matrix, subtraction)
 
     EXPECT_EQ(mat1, answer);
 }
+
+TEST(Matrix, multiplication)
+{
+    const Matrix<double, 2, 3> mat1{
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    const Matrix<double, 3, 2> mat2{
+        {7, 8},
+        {9, 10},
+        {11, 12}
+    };
+
+    const Matrix<double, 2, 2> answer{
+        {58, 64},
+        {139, 154}
+    };
+
+    const auto result = mat1 * mat2;
+
+    EXPECT_EQ(result, answer);
+}
