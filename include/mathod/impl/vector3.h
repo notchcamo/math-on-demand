@@ -11,13 +11,15 @@
 /**
  * @brief Namespace for <b>math</b>-<b>o</b>n-<b>d</b>emand.
  */
-namespace mathod {
+namespace mathod
+{
     /**
      * @brief 3D vector class.
      * @tparam T Type of the components. Must be a floating-point type.
      */
     template <std::floating_point T>
-    class Vector3 {
+    class Vector3
+    {
     private:
         T x, y, z;
 
@@ -34,8 +36,10 @@ namespace mathod {
 
         // Operator Overloadings.
 
-        Vector3& operator=(const Vector3& rhs) noexcept {
-            if (*this != rhs) {
+        Vector3& operator=(const Vector3& rhs) noexcept
+        {
+            if (*this != rhs)
+            {
                 x = rhs.x;
                 y = rhs.y;
                 z = rhs.z;
@@ -54,43 +58,53 @@ namespace mathod {
 
             return *this;
         }
-        Vector3 operator+(const Vector3& rhs) const noexcept {
+        Vector3 operator+(const Vector3& rhs) const noexcept
+        {
             return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
         }
-        Vector3 operator-(const Vector3& rhs) const noexcept {
+        Vector3 operator-(const Vector3& rhs) const noexcept
+        {
             return Vector3(x - rhs.x, y - rhs.y, z - rhs.z);
         }
-        Vector3 operator*(const T scalar) const noexcept {
+        Vector3 operator*(const T scalar) const noexcept
+        {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
-        Vector3 operator/(const T scalar) const {
-            if (util::isZero(scalar)) {
+        Vector3 operator/(const T scalar) const
+        {
+            if (util::isZero(scalar))
+            {
                 throw exception::DivisionByZero();
             }
 
             const T inv_scalar{static_cast<T>(1.0) / scalar};
             return Vector3(x * inv_scalar, y * inv_scalar, z * inv_scalar);
         }
-        Vector3& operator+=(const Vector3& rhs) noexcept {
+        Vector3& operator+=(const Vector3& rhs) noexcept
+        {
             x += rhs.x;
             y += rhs.y;
             z += rhs.z;
             return *this;
         }
-        Vector3 operator-=(const Vector3& rhs) noexcept {
+        Vector3 operator-=(const Vector3& rhs) noexcept
+        {
             x -= rhs.x;
             y -= rhs.y;
             z -= rhs.z;
             return *this;
         }
-        Vector3& operator*=(const T scalar) noexcept {
+        Vector3& operator*=(const T scalar) noexcept
+        {
             x *= scalar;
             y *= scalar;
             z *= scalar;
             return *this;
         }
-        Vector3& operator/=(const T scalar) {
-            if (util::isZero(scalar)) {
+        Vector3& operator/=(const T scalar)
+        {
+            if (util::isZero(scalar))
+            {
                 throw exception::DivisionByZero();
             }
 
@@ -100,7 +114,8 @@ namespace mathod {
             z *= inv_scalar;
             return *this;
         }
-        bool operator==(const Vector3& rhs) const {
+        bool operator==(const Vector3& rhs) const
+        {
             return util::isEqual(x, rhs.x) &&
                 util::isEqual(y, rhs.y) &&
                 util::isEqual(z, rhs.z);
@@ -121,7 +136,8 @@ namespace mathod {
         /**
          * @return String formatted as "[x, y, z]".
          */
-        std::string toString() const {
+        std::string toString() const
+        {
             return std::format("[{:f}, {:f}, {:f}]", x, y, z);
         }
 
@@ -130,23 +146,27 @@ namespace mathod {
          * to avoid the expensive square root operation.
          * @return Magnitude(length) of the vector.
          */
-        T getMagnitude() const {
+        T getMagnitude() const
+        {
             return std::sqrt(x * x + y * y + z * z);
         }
 
         /**
          * @return Squared magnitude(length) of the vector.
          */
-        T getMagnitudeSquared() const noexcept {
+        T getMagnitudeSquared() const noexcept
+        {
             return x * x + y * y + z * z;
         }
 
         /**
          * Changes the vector's magnitude to 1.
          */
-        void normalize() {
+        void normalize()
+        {
             const T magnitude{getMagnitude()};
-            if (util::isZero(magnitude)) {
+            if (util::isZero(magnitude))
+            {
                 return;
             }
 
@@ -159,21 +179,24 @@ namespace mathod {
         /**
          * @return Normalized vector.
          */
-        Vector3 getNormalized() const {
+        Vector3 getNormalized() const
+        {
             return Vector3(x, y, z).normalize();
         }
 
         /**
          * @return Dot product of two vectors.
          */
-        T dot(const Vector3& rhs) const noexcept {
+        T dot(const Vector3& rhs) const noexcept
+        {
             return x * rhs.x + y * rhs.y + z * rhs.z;
         }
 
         /**
          * @return Cross product of two vectors.
          */
-        Vector3 cross(const Vector3& rhs) const noexcept {
+        Vector3 cross(const Vector3& rhs) const noexcept
+        {
             return Vector3(y * rhs.z - z *rhs.y,
                 z * rhs.x - x * rhs.z,
                 x * rhs.y - y * rhs.x);

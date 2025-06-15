@@ -9,8 +9,10 @@
 /**
  * @brief Namespace for custom exceptions.
  */
-namespace mathod::exception {
-    class DivisionByZero final : public std::exception {
+namespace mathod::exception
+{
+    class DivisionByZero final : public std::exception
+    {
     private:
         std::string msg;
 
