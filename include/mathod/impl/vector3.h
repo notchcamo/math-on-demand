@@ -43,6 +43,17 @@ namespace mathod {
 
             return *this;
         }
+        Vector3& operator=(Vector3&& rhs) noexcept
+        {
+            if (*this != rhs)
+            {
+                x = std::move(rhs.x);
+                y = std::move(rhs.y);
+                z = std::move(rhs.z);
+            }
+
+            return *this;
+        }
         Vector3 operator+(const Vector3& rhs) const noexcept {
             return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
         }
