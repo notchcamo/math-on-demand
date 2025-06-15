@@ -107,3 +107,21 @@ TEST(Matrix, multiplication)
 
     EXPECT_EQ(result, answer);
 }
+
+TEST(Matrix, transpose)
+{
+    const Matrix<float, 2, 3> mat{
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+
+    const Matrix<float, 3, 2> answer{
+        {1, 4},
+        {2, 5},
+        {3, 6}
+    };
+
+    const auto matT = mat.transpose();
+
+    EXPECT_EQ(matT, answer);
+}
