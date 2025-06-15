@@ -187,6 +187,21 @@ namespace mathod
                 }
             }
         }
+
+        /**
+         * @return Transposed matrix of this
+         */
+        Matrix<T, Col, Row> transpose() const noexcept
+        {
+            Matrix<T, Col, Row> transposed{};
+
+            transposed.forEachEntry([this](T& entry, const size_t row, const size_t col)
+            {
+                entry = entries[col][row];
+            });
+
+            return transposed;
+        }
     };
 
     // Type aliases.
