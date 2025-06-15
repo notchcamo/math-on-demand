@@ -104,7 +104,7 @@ namespace mathod
         {
             Matrix newMatrix{};
 
-            newMatrix.doForEachEntries([this, &rhs](T& entry, const size_t row, const size_t col)
+            newMatrix.forEachEntry([this, &rhs](T& entry, const size_t row, const size_t col)
             {
                 entry = entries[row][col] + rhs.entries[row][col];
             });
@@ -116,7 +116,7 @@ namespace mathod
         {
             Matrix newMatrix{};
 
-            newMatrix.doForEachEntries([this, &rhs](T& entry, const size_t row, const size_t col)
+            newMatrix.forEachEntry([this, &rhs](T& entry, const size_t row, const size_t col)
             {
                 entry = entries[row][col] - rhs.entries[row][col];
             });
@@ -134,7 +134,7 @@ namespace mathod
 
             Matrix<T, Row, C> newMatrix{};
 
-            newMatrix.doForEachEntries([this, &rhs](T& entry, const size_t row, const size_t col)
+            newMatrix.forEachEntry([this, &rhs](T& entry, const size_t row, const size_t col)
             {
                 for (size_t c = 0; c < Col; ++c)
                 {
@@ -147,7 +147,7 @@ namespace mathod
 
         Matrix& operator+=(const Matrix& rhs) noexcept
         {
-            doForEachEntries([&rhs](T& entry, const size_t row, const size_t col)
+            forEachEntry([&rhs](T& entry, const size_t row, const size_t col)
             {
                 entry += rhs.entries[row][col];
             });
@@ -157,7 +157,7 @@ namespace mathod
 
         Matrix& operator-=(const Matrix& rhs) noexcept
         {
-            doForEachEntries([&rhs](T& entry, const size_t row, const size_t col)
+            forEachEntry([&rhs](T& entry, const size_t row, const size_t col)
             {
                entry -= rhs.entries[row][col];
             });
@@ -177,7 +177,7 @@ namespace mathod
          */
         template <typename Func>
         requires std::invocable<Func, T&, const size_t, const size_t>
-        void doForEachEntries(const Func& action)
+        void forEachEntry(const Func& action)
         {
             for (size_t row = 0; row < Row; ++row)
             {
