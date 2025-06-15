@@ -5,3 +5,4 @@
 #include "impl/util.h"
 #include "impl/exception.h"
 #include "impl/vector3.h"
+#include "impl/matrix.h"
