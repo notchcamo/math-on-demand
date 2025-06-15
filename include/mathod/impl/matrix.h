@@ -97,7 +97,15 @@ namespace mathod
 
         bool operator==(const Matrix& rhs) const noexcept
         {
-            return entries == rhs.entries;
+            for (int row = 0; row < Row; ++row)
+            {
+                if (!util::isEqual(entries[row], rhs.entries[row]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         Matrix operator+(const Matrix& rhs) const noexcept
