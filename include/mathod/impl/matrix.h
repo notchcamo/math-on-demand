@@ -85,6 +85,16 @@ namespace mathod
             return entries[row];
         }
 
+        const ColArray& operator[](const size_t row) const noexcept(false)
+        {
+            if (row >= Row)
+            {
+                throw std::out_of_range("Max row is " + std::to_string(Row));
+            }
+
+            return entries[row];
+        }
+
         bool operator==(const Matrix& rhs) const noexcept
         {
             return entries == rhs.entries;
@@ -109,6 +119,27 @@ namespace mathod
             newMatrix.doForEachEntries([this, &rhs](T& entry, const size_t row, const size_t col)
             {
                 entry = entries[row][col] - rhs.entries[row][col];
+            });
+
+            return newMatrix;
+        }
+
+        template <size_t R, size_t C>
+        Matrix<T, Row, C> operator*(const Matrix<T, R, C>& rhs) const noexcept(false)
+        {
+            if (Col != R)
+            {
+                throw std::invalid_argument("The number of rows must be " + std::to_string(Col));
+            }
+
+            Matrix<T, Row, C> newMatrix{};
+
+            newMatrix.doForEachEntries([this, &rhs](T& entry, const size_t row, const size_t col)
+            {
+                for (size_t c = 0; c < Col; ++c)
+                {
+                    entry += entries[row][c] * rhs[c][col];
+                }
             });
 
             return newMatrix;
