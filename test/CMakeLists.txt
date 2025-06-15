@@ -6,7 +6,8 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 # adding the google_tests_run target
 add_executable(google_tests_run vector3_test.cpp
-        lerp_test.cpp)
+        lerp_test.cpp
+        matrix_test.cpp)
 
 # linking google_tests_run with the library which will be tested
 
