@@ -201,6 +201,18 @@ namespace mathod
         constexpr static size_t getRowSize() noexcept { return Row; }
         constexpr static size_t getColSize() noexcept { return Col; }
 
+        constexpr static Matrix identity() noexcept requires (Row == Col)
+        {
+            Matrix identity{};
+
+            for (size_t i = 0; i < Row; ++i)
+            {
+                identity[i][i] = T(1);
+            }
+
+            return identity;
+        }
+
         /**
          * Do an action for each entry.
          * @tparam Func Params must be (T& entry, const size_t row, const size_t col)
