@@ -154,6 +154,18 @@ namespace mathod
             return newMatrix;
         }
 
+        Matrix operator*(const T val) const noexcept
+        {
+            Matrix newMatrix{};
+
+            newMatrix.forEachEntry([this, val](T& entry, const size_t row, const size_t col)
+            {
+                entry = entries[row][col] * val;
+            });
+
+            return newMatrix;
+        }
+
         Matrix& operator+=(const Matrix& rhs) noexcept
         {
             forEachEntry([&rhs](T& entry, const size_t row, const size_t col)
@@ -169,6 +181,16 @@ namespace mathod
             forEachEntry([&rhs](T& entry, const size_t row, const size_t col)
             {
                entry -= rhs.entries[row][col];
+            });
+
+            return *this;
+        }
+
+        Matrix& operator*=(const T val) noexcept
+        {
+            forEachEntry([val](T& entry, const size_t, const size_t)
+            {
+                entry *= val;
             });
 
             return *this;
