@@ -159,13 +159,13 @@ TEST(Matrix, identity)
         {0, 0, 1}
     };
 
-    EXPECT_EQ(mat2x2, Matrix2d::identity());
-    EXPECT_EQ(mat3x3, Matrix3f::identity());
+    EXPECT_EQ(mat2x2, Matrix2d::createIdentity());
+    EXPECT_EQ(mat3x3, Matrix3f::createIdentity());
 
     const Matrix2L mat1{
         {1, 2},
         {3, 4}
     };
 
-    EXPECT_EQ(mat1, mat1 * Matrix2L::identity());
+    EXPECT_EQ(mat1, mat1 * Matrix2L::createIdentity());
 }

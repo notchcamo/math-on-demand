@@ -201,7 +201,7 @@ namespace mathod
         constexpr static size_t getRowSize() noexcept { return Row; }
         constexpr static size_t getColSize() noexcept { return Col; }
 
-        constexpr static Matrix identity() noexcept requires (Row == Col)
+        constexpr static Matrix createIdentity() noexcept requires (Row == Col)
         {
             Matrix identity{};
 
