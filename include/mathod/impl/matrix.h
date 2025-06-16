@@ -70,7 +70,7 @@ namespace mathod
         {
             if (*this != rhs)
             {
-                entries = std::move(entries);
+                entries = std::move(rhs.entries);
             }
 
             return *this;
