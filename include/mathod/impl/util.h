@@ -10,14 +10,19 @@
 namespace mathod::util
 {
     /**
+     * Used as the default arguments in comparison functions.
+     */
+    constexpr double DEFAULT_TOLERANCE = 1e-8;
+
+    /**
      * @tparam T Arithmetic types only.
      * @return True if the given values are nearly equal.
      */
     template <typename T>
     requires std::is_arithmetic_v<T>
-    bool isEqual(const T a, const T b, const T tolerance = std::numeric_limits<T>::epsilon())
+    bool isEqual(const T a, const T b, const T tolerance = DEFAULT_TOLERANCE)
     {
-        return std::abs(a - b) < tolerance;
+        return std::abs(a - b) <= tolerance;
     }
 
     /**
@@ -27,9 +32,9 @@ namespace mathod::util
      */
     template <std::ranges::range Range>
     requires std::is_arithmetic_v<std::ranges::range_value_t<Range>>
-    bool isEqual(const Range& a, const Range& b, const std::ranges::range_value_t<Range> tolerance = std::numeric_limits<std::ranges::range_value_t<Range>>::epsilon())
+    bool isEqual(const Range& a, const Range& b, const std::ranges::range_value_t<Range> tolerance = DEFAULT_TOLERANCE)
     {
-        const auto pred = [&tolerance](const auto& aVal, const auto& bVal)
+        const auto pred = [tolerance](const auto& aVal, const auto& bVal)
         {
             return isEqual(aVal, bVal, tolerance);
         };
@@ -43,7 +48,7 @@ namespace mathod::util
      */
     template <typename T>
     requires std::is_arithmetic_v<T>
-    bool isZero(const T num, const T tolerance = std::numeric_limits<T>::epsilon())
+    bool isZero(const T num, const T tolerance = DEFAULT_TOLERANCE)
     {
         return isEqual(num, static_cast<T>(0), tolerance);
     }
