@@ -245,6 +245,131 @@ namespace mathod
 
             return transposed;
         }
+
+        /**
+         * Only callable on 2 x 2 matrix
+         * @return Inverse matrix
+         */
+        Matrix inverse2x2() const noexcept(false) requires (Row == Col && Row == 2)
+        {
+            const T a = entries[0][0], b = entries[0][1];
+            const T c = entries[1][0], d = entries[1][1];
+
+            const T det = a * d - b * c;
+
+            if (util::isZero(det))
+            {
+                throw std::domain_error("Matrix is not invertible");
+            }
+
+            const T invDet = T(1) / det;
+
+            return {
+                {d * invDet, -b * invDet},
+                {-c * invDet, a * invDet}
+            };
+        }
+
+        /**
+         * Only callable on 3 x 3 matrix
+         * @return Inverse matrix
+         */
+        Matrix inverse3x3() const noexcept(false) requires (Row == Col && Row == 3)
+        {
+            const T a = entries[0][0], b = entries[0][1], c = entries[0][2];
+            const T d = entries[1][0], e = entries[1][1], f = entries[1][2];
+            const T g = entries[2][0], h = entries[2][1], i = entries[2][2];
+
+            const T det = a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g);
+
+            if (util::isZero(det))
+            {
+                throw std::domain_error("Matrix is not invertible");
+            }
+
+            const T invDet = T(1) / det;
+
+            return {
+                {(e*i - f*h) * invDet, (c*h - b*i) * invDet, (b*f - c*e) * invDet},
+                {(f*g - d*i) * invDet, (a*i - c*g) * invDet, (c*d - a*f) * invDet},
+                {(d*h - e*g) * invDet, (b*g - a*h) * invDet, (a*e - b*d) * invDet},
+            };
+        }
+
+        /**
+         * Using Gauss-Jordan Elimination to get the inverse matrix.
+         * inverse2x2 or inverse3x3 functions are recommended for 2x2 or 3x3 matrices.
+         * @return Inverse matrix
+         */
+        Matrix inverseNxN() const noexcept(false) requires (Row == Col)
+        {
+            const Matrix identity = Matrix::createIdentity();
+            std::array<std::array<T, Row*2>, Row> augmented{};
+
+            for (int r = 0; r < Row; ++r)
+            {
+                for (int c = 0; c < Row; ++c)
+                {
+                    augmented[r][c] = entries[r][c];
+                    augmented[r][c + Row] = identity[r][c];
+                }
+            }
+
+            for (int i = 0; i < Row; ++i)
+            {
+                if (util::isZero(augmented[i][i]))
+                {
+                    bool swapped = false;
+
+                    for (int k = i + 1; k < Row; ++k)
+                    {
+                        if (!util::isZero(augmented[k][i]))
+                        {
+                            std::swap(augmented[i], augmented[k]);
+                            swapped = true;
+                            break;
+                        }
+                    }
+
+                    if (!swapped)
+                    {
+                        throw std::domain_error("Matrix is not invertible");
+                    }
+                }
+
+                const T invPivot = T(1) / augmented[i][i];
+
+                for (int j = i; j < Row * 2; ++j)
+                {
+                    augmented[i][j] *= invPivot;
+                }
+
+                for (int k = 0; k < Row; ++k)
+                {
+                    if (k != i && !util::isZero(augmented[k][i]))
+                    {
+                        const T factor = augmented[k][i];
+
+                        for (int j = i; j < Row * 2; ++j)
+                        {
+                            augmented[k][j] -= factor * augmented[i][j];
+                        }
+                    }
+                }
+            }
+
+            Matrix inversed{};
+
+            for (int r = 0; r < Row; ++r)
+            {
+                for (int c = Row; c < 2 * Row; ++c)
+                {
+                    inversed[r][c-Row] = augmented[r][c];
+                }
+            }
+
+            return inversed;
+        }
     };
 
     // Type aliases.
