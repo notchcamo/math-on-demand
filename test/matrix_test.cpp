@@ -146,3 +146,26 @@ TEST(Matrix, transpose)
 
     EXPECT_EQ(matT, answer);
 }
+
+TEST(Matrix, identity)
+{
+    const Matrix2d mat2x2{
+        {1, 0},
+        {0, 1}
+    };
+    const Matrix3f mat3x3{
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+    };
+
+    EXPECT_EQ(mat2x2, Matrix2d::identity());
+    EXPECT_EQ(mat3x3, Matrix3f::identity());
+
+    const Matrix2L mat1{
+        {1, 2},
+        {3, 4}
+    };
+
+    EXPECT_EQ(mat1, mat1 * Matrix2L::identity());
+}
