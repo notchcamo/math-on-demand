@@ -15,6 +15,7 @@ namespace mathod
      * @tparam Col The number of columns.
      */
     template <std::floating_point T, size_t Row, size_t Col>
+    requires (Row > 0 && Col > 0)
     class Matrix
     {
     private:
