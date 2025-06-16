@@ -85,7 +85,7 @@ TEST(Matrix, subtraction)
     EXPECT_EQ(mat1, answer);
 }
 
-TEST(Matrix, multiplication)
+TEST(Matrix, matrix_multiplication)
 {
     const Matrix<double, 2, 3> mat1{
         {1, 2, 3},
@@ -106,6 +106,27 @@ TEST(Matrix, multiplication)
     const auto result = mat1 * mat2;
 
     EXPECT_EQ(result, answer);
+}
+
+TEST(Matrix, scalar_multiplication)
+{
+    Matrix3d mat1{
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    const Matrix3d answer{
+        {2, 4, 6},
+        {8, 10, 12},
+        {14, 16, 18}
+    };
+
+    EXPECT_EQ(mat1 * 2, answer);
+
+    mat1 *= 2;
+
+    EXPECT_EQ(mat1, answer);
 }
 
 TEST(Matrix, transpose)
