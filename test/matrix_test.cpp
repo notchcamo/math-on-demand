@@ -129,6 +129,21 @@ TEST(Matrix, scalar_multiplication)
     EXPECT_EQ(mat1, answer);
 }
 
+TEST(Matrix, vector_multiplication)
+{
+    const Matrix4d mat{
+        {0, -1, 0, 10},
+        {1, 0, 0, 20},
+        {0, 0, 1, 30},
+        {0, 0, 0, 1}
+    };
+
+    const Vector3d vec{1, 0, 0};
+    const Vector3d answer{10, 21, 30};
+
+    EXPECT_EQ(mat * vec, answer);
+}
+
 TEST(Matrix, transpose)
 {
     const Matrix<float, 2, 3> mat{
