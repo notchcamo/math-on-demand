@@ -5,6 +5,7 @@
 #include <concepts>
 #include <array>
 #include <string>
+#include "mathod/impl/vector3.h"
 
 namespace mathod
 {
@@ -133,6 +134,11 @@ namespace mathod
             return newMatrix;
         }
 
+        /**
+         * Matrix multiplication.
+         * @tparam R RHS matrix's row size
+         * @tparam C RHS matrix's column size
+         */
         template <size_t R, size_t C>
         Matrix<T, Row, C> operator*(const Matrix<T, R, C>& rhs) const noexcept(false)
         {
@@ -154,6 +160,9 @@ namespace mathod
             return newMatrix;
         }
 
+        /**
+         * Scalar multiplication.
+         */
         Matrix operator*(const T val) const noexcept
         {
             Matrix newMatrix{};
@@ -164,6 +173,25 @@ namespace mathod
             });
 
             return newMatrix;
+        }
+
+        /**
+         * Vector multiplication.
+         */
+        Vector3<T> operator*(const Vector3<T>& rhs) const requires (Row == 4 && Col == 4)
+        {
+            const T a = entries[0][0], b = entries[0][1], c = entries[0][2], d = entries[0][3];
+            const T e = entries[1][0], f = entries[1][1], g = entries[1][2], h = entries[1][3];
+            const T i = entries[2][0], j = entries[2][1], k = entries[2][2], l = entries[2][3];
+            const T m = entries[3][0], n = entries[3][1], o = entries[3][2], p = entries[3][3];
+
+            const T divisor = m*rhs.x + n*rhs.y + o*rhs.z + p;
+
+            return {
+                (a*rhs.x + b*rhs.y + c*rhs.z + d) / divisor,
+                (e*rhs.x + f*rhs.y + g*rhs.z + h) / divisor,
+                (i*rhs.x + j*rhs.y + k*rhs.z + l) / divisor,
+            };
         }
 
         Matrix& operator+=(const Matrix& rhs) noexcept
