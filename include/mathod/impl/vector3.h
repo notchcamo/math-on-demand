@@ -20,7 +20,7 @@ namespace mathod
     template <std::floating_point T>
     class Vector3
     {
-    private:
+    public:
         T x, y, z;
 
     public:
