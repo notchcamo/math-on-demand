@@ -1,6 +1,7 @@
 # soo
 
 [![Deploy Document](https://github.com/notchcamo/soo/actions/workflows/deploy_doxygen.yml/badge.svg)](https://github.com/notchcamo/soo/actions/workflows/deploy_doxygen.yml)  
+[![Unit Test (Windows, MSVC)](https://github.com/notchcamo/soo/actions/workflows/unit_test_windows_msvc.yml/badge.svg)](https://github.com/notchcamo/soo/actions/workflows/unit_test_windows_msvc.yml)  
 [![Unit Test (macOS, AppleClang)](https://github.com/notchcamo/soo/actions/workflows/unit_test_macos_apple_clang.yml/badge.svg)](https://github.com/notchcamo/soo/actions/workflows/unit_test_macos_apple_clang.yml)
 [![Unit Test (macOS, clang)](https://github.com/notchcamo/soo/actions/workflows/unit_test_macos_clang.yml/badge.svg)](https://github.com/notchcamo/soo/actions/workflows/unit_test_macos_clang.yml)  
 
