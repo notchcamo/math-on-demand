@@ -21,11 +21,14 @@ jobs:
           brew update
           brew install cmake
 
-      - name: Build
+      - name: Configure CMake
         run: |
           export CC=clang
           export CXX=clang++
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build
 
       - name: Run Test
         run: ${{github.workspace}}/build/google_tests_run
