@@ -1,4 +1,4 @@
-name: Unit Test (macOS, clang)
+name: Unit Test (macOS, AppleClang)
 
 on:
   push:
@@ -16,16 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install packages
+      - name: Install CMake
         run: |
           brew update
           brew install cmake
-          brew install llvm
 
       - name: Configure CMake
         run: |
-          export CC=/opt/homebrew/opt/llvm/bin/clang
-          export CXX=/opt/homebrew/opt/llvm/bin/clang++
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${BUILD_TYPE}
 
       - name: Build
