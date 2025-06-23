@@ -207,8 +207,13 @@ namespace soo
         /**
          * Zero vector.
          */
-        inline static const Vector3 ZERO{0, 0, 0};
+        static const Vector3 ZERO;
     };
+
+    // Static member definitions.
+
+    template <std::floating_point T>
+    const Vector3<T> Vector3<T>::ZERO{0, 0, 0};
 
     // Type aliases.
 
