@@ -1,4 +1,4 @@
-name: Unit Test (windows, MSVC)
+name: Unit Test (Windows, MSVC)
 
 on:
   push:
@@ -21,10 +21,10 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DTEST=ON
+          cmake -B ./build -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DTEST=ON
 
       - name: Build
-        run: cmake --build ${{github.workspace}}/build
+        run: cmake --build ./build
 
       - name: Run Test
         run: ${{github.workspace}}/build/test/google_tests_run
