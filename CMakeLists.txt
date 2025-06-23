@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.31)
-project(math_on_demand)
+project(soo)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(math_on_demand STATIC src/library.cpp)
+add_library(soo STATIC src/library.cpp)
 
 # By notchcamo.
 
