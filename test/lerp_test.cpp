@@ -41,6 +41,4 @@ TEST(LERP, invalid_argument) {
     EXPECT_THROW(util::lerp(0.0f, 1.0f, 1.1f), std::invalid_argument);
     EXPECT_THROW(util::lerp(0.0f, 1.0f, -0.5f), std::invalid_argument);
     EXPECT_NO_THROW(util::lerp(0.0f, 1.0f, 0.5f));
-
-    EXPECT_TRUE(false);
 }
