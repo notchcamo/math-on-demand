@@ -34,12 +34,27 @@ namespace soo::util
     requires std::is_arithmetic_v<std::ranges::range_value_t<Range>>
     bool isEqual(const Range& a, const Range& b, const std::ranges::range_value_t<Range> tolerance = DEFAULT_TOLERANCE)
     {
-        const auto pred = [tolerance](const auto& aVal, const auto& bVal)
+        const auto distA = std::distance(std::cbegin(a), std::cend(a));
+        const auto distB = std::distance(std::cbegin(b), std::cend(b));
+        if (distA != distB)
         {
-            return isEqual(aVal, bVal, tolerance);
-        };
+            return false;
+        }
 
-        return std::ranges::equal(a, b, pred);
+        auto iterA = std::cbegin(a);
+        auto iterB = std::cbegin(b);
+        while (iterA != std::cend(a))
+        {
+            if (!isEqual(*iterA, *iterB, tolerance))
+            {
+                return false;
+            }
+
+            ++iterA;
+            ++iterB;
+        }
+
+        return true;
     }
 
     /**
