@@ -11,7 +11,7 @@
 /**
  * @brief Namespace for <b>math</b>-<b>o</b>n-<b>d</b>emand.
  */
-namespace mathod
+namespace soo
 {
     /**
      * @brief 3D vector class.
@@ -226,4 +226,4 @@ namespace mathod
      * Type alias for Vector3 with long double precision.
      */
     using Vector3L = Vector3<long double>;
-} // namespace mathod.
+} // namespace soo.

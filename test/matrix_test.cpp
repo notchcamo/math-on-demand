@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "mathod/mathod.h"
 
-using namespace mathod;
+using namespace soo;
 
 TEST(Matrix, operator_array)
 {

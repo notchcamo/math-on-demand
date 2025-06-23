@@ -9,7 +9,7 @@
 /**
  * @brief Namespace for custom exceptions.
  */
-namespace mathod::exception
+namespace soo::exception
 {
     class DivisionByZero final : public std::exception
     {
@@ -20,4 +20,4 @@ namespace mathod::exception
         explicit DivisionByZero(std::string str = "Division by zero.") : msg(std::move(str)) {}
         const char* what() const noexcept override { return msg.c_str(); }
     };
-} // namespace mathod::exception.
+} // namespace soo::exception.

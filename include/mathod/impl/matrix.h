@@ -7,7 +7,7 @@
 #include <string>
 #include "mathod/impl/vector3.h"
 
-namespace mathod
+namespace soo
 {
     /**
      * @brief Matrix class.
@@ -411,4 +411,4 @@ namespace mathod
     using Matrix4f = Matrix<float, 4, 4>;
     using Matrix4d = Matrix<double, 4, 4>;
     using Matrix4L = Matrix<long double, 4, 4>;
-} // namespace mathod.
+} // namespace soo.

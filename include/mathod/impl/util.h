@@ -7,7 +7,7 @@
 /**
  * @brief Namespace for utility functions.
  */
-namespace mathod::util
+namespace soo::util
 {
     /**
      * Used as the default arguments in comparison functions.
@@ -73,4 +73,4 @@ namespace mathod::util
 
         return a * (FP(1) - alpha) + b * alpha;
     }
-} // namespace mathod::util.
+} // namespace soo::util.

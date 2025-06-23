@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "mathod/mathod.h"
 
-using namespace mathod;
+using namespace soo;
 
 TEST(LERP, function_float) {
     const auto testFunc = []<std::floating_point T>() {
