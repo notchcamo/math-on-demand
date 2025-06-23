@@ -21,7 +21,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -B ./build -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DTEST=ON
+          cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -DTEST=ON
 
       - name: Build
         run: cmake --build ./build
