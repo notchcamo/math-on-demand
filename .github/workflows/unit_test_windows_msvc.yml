@@ -21,7 +21,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -B ./build -T ClangCL -DTEST=ON
+          cmake -B ./build -DTEST=ON
 
       - name: Build
         run: cmake --build ./build --config Debug
