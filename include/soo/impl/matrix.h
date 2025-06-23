@@ -5,7 +5,7 @@
 #include <concepts>
 #include <array>
 #include <string>
-#include "mathod/impl/vector3.h"
+#include "soo/impl/vector3.h"
 
 namespace soo
 {

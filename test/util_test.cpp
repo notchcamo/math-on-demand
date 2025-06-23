@@ -1,7 +1,7 @@
 // By notchcamo.
 
 #include "gtest/gtest.h"
-#include "mathod/mathod.h"
+#include "soo/soo.h"
 
 using namespace soo;
 
