@@ -1,5 +1,7 @@
 # By notchcamo.
 
+cmake_minimum_required(VERSION 3.16)
+
 project(Google_tests)
 add_subdirectory(lib)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
