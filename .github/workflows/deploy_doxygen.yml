@@ -1,4 +1,4 @@
-name: Deploy doxygen document.
+name: Deploy Document
 
 on:
   push:
