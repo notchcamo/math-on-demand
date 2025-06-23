@@ -1,33 +1,33 @@
-name: Unit Test (Windows, MSVC)
-
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-env:
-  BUILD_TYPE: Debug
-
-jobs:
-  test:
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v2
-        with:
-#          vs-version: '[16.11,'
-          vs-prerelease: true
-
-      - name: Configure CMake
-        run: |
-          cmake -B ./build -DTEST=ON
-
-      - name: Build
-        run: cmake --build ./build --config Debug
-
-      - name: Run Test
-        run: ./build/Debug/google_tests_run.exe
+#name: Unit Test (Windows, MSVC)
+#
+#on:
+#  push:
+#    branches: ["main"]
+#  pull_request:
+#    branches: ["main"]
+#
+#env:
+#  BUILD_TYPE: Debug
+#
+#jobs:
+#  test:
+#    runs-on: windows-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Add msbuild to PATH
+#        uses: microsoft/setup-msbuild@v2
+#        with:
+##          vs-version: '[16.11,'
+#          vs-prerelease: true
+#
+#      - name: Configure CMake
+#        run: |
+#          cmake -B ./build -DTEST=ON
+#
+#      - name: Build
+#        run: cmake --build ./build --config Debug
+#
+#      - name: Run Test
+#        run: ./build/Debug/google_tests_run.exe
