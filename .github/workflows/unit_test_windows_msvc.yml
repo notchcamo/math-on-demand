@@ -19,14 +19,15 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
         with:
-          vs-version: '[16.11,'
+#          vs-version: '[16.11,'
+          vs-prerelease: true
 
       - name: Configure CMake
         run: |
-          cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -DTEST=ON
+          cmake -B ./build -DTEST=ON
 
       - name: Build
-        run: cmake --build ./build
+        run: cmake --build ./build --config Debug
 
       - name: Run Test
-        run: ${{github.workspace}}/build/test/google_tests_run
+        run: ./build/Debug/google_tests_run.exe
